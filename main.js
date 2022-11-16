@@ -13,8 +13,8 @@ function generateChart(data) {
     options: {
       legend: { display: false },
       scales: {
-        xAxes: [{ ticks: { min: 40, max: 160 } }],
-        yAxes: [{ ticks: { min: 0, max: 20 } }],
+        // xAxes: [{ ticks: { min: 40, max: 160 } }],
+        // yAxes: [{ ticks: { min: 0, max: 20 } }],
       },
     },
   });
@@ -35,3 +35,19 @@ var xyValues = [
 ];
 
 generateChart(xyValues);
+
+document.getElementById("go").addEventListener("click", () => {
+  const valor = parseInt(document.getElementById("valor").value);
+  const valor1 = parseInt(document.getElementById("valor1").value);
+  const valor2 = parseInt(document.getElementById("valor2").value);
+
+  console.log({ valor }, { valor1 }, { valor2 });
+
+  const values = [
+    { x: 50, y: valor },
+    { x: 60, y: valor1 },
+    { x: 70, y: valor2 },
+  ];
+
+  generateChart(values);
+});

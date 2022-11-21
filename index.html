@@ -2,31 +2,232 @@
 <html>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <script defer src="main.js"></script>
-  <link rel="stylesheet" href="mystyle.css" />
+  <script defer src="calc.js"></script>
 
-  <body>
+  <link rel="stylesheet" href="mystyle.css" />
+  <link rel="stylesheet" href="mystyle_checkbox.css" />
+
+  <body id="body">
     <div id="Chart-div">
-      <div class="input-div">
-        <!-- Valor -->
+      <div id="top">
         <div class="label-div">
-          <label for="fname">Valor </label>
-          <input type="text" id="valor" name="fname" /><br /><br />
+          <label for="fname">Coste Seeder</label>
+          <input type="text" id="Coste_Seeder" value="15" name="fname" />
         </div>
-        <!-- Valor1 -->
         <div class="label-div">
-          <label for="fname">Valor1 </label>
-          <input type="text" id="valor1" name="fname" /><br /><br />
+          <label for="fname">Cuota Seeder</label>
+          <input type="text" id="Cuota_Seeder" value="215" name="fname" />
         </div>
-        <!-- Valor2 -->
         <div class="label-div">
-          <label for="fname">Valor2 </label>
-          <input type="text" id="valor2" name="fname" /><br /><br />
+          <label for="fname">Nº ideas anuales por Seeder</label>
+          <input
+            type="text"
+            id="N_ideas_anuales_Seeder"
+            value="1"
+            name="fname"
+          />
         </div>
-        <!--  -->
+        <div class="label-div">
+          <label for="fname">% Cuotas anuales Seeder</label>
+          <input
+            type="text"
+            id="P_Cuotas_anuales_Seeder"
+            value="0.5"
+            name="fname"
+          />
+        </div>
+        <div class="label-div">
+          <label for="fname">Coste Watcher</label>
+          <input type="text" id="Coste_Watcher" value="0.1" name="fname" />
+        </div>
+        <div class="label-div">
+          <label for="fname">Cuota Buyer</label>
+          <input type="text" id="Cuota_Buyer" value="0" name="fname" />
+        </div>
+        <div class="label-div">
+          <label for="fname">Coste registro BC</label>
+          <input type="text" id="Coste_registro_BC" value="0.7" name="fname" />
+        </div>
+        <div class="label-div">
+          <label for="fname">Coste registro BC Watcher </label>
+          <input
+            type="text"
+            id="Coste_registro_BC_Watcher"
+            value="0.4"
+            name="fname"
+          />
+        </div>
+        <div class="label-div">
+          <label for="fname">Cuota Developer</label>
+          <input type="text" id="Cuota_Developer" value="0" name="fname" />
+        </div>
       </div>
-      <canvas id="myChart" style="width: 100%; max-width: 700px"></canvas>
-      <div class="button-div">
-        <a id="go" href="#">Update</a>
+
+      <div id="left">
+        <div style="display: flex; gap: 10px">
+          <div id="option1" class="box">
+            <div onclick="showCheckboxes('checkboxes0')" class="title">
+              <h3>N Seeders</h3>
+              <img src="flecha.svg" />
+            </div>
+
+            <div id="checkboxes0" class="cb hide">
+              <p id="00" class="cb_n">10</p>
+              <p id="01" class="cb_n active">50</p>
+              <p id="02" class="cb_n">100</p>
+              <p id="03" class="cb_n">500</p>
+              <p id="04" class="cb_n">1000</p>
+              <p id="05" class="cb_n">5000</p>
+              <p id="06" class="cb_n">10000</p>
+            </div>
+          </div>
+
+          <div id="option2" class="box">
+            <div onclick="showCheckboxes('checkboxes1')" class="title">
+              <h3>N Developres</h3>
+              <img src="flecha.svg" />
+            </div>
+
+            <div id="checkboxes1" class="cb hide">
+              <p id="10" class="cb_n">10</p>
+              <p id="11" class="cb_n active">50</p>
+              <p id="12" class="cb_n">100</p>
+              <p id="13" class="cb_n">500</p>
+              <p id="14" class="cb_n">1000</p>
+              <p id="15" class="cb_n">5000</p>
+              <p id="16" class="cb_n">10000</p>
+            </div>
+          </div>
+          <div id="option3" class="box">
+            <div onclick="showCheckboxes('checkboxes2')" class="title">
+              <h3>N Buyers</h3>
+              <img src="flecha.svg" />
+            </div>
+
+            <div id="checkboxes2" class="cb hide">
+              <p id="20" class="cb_n">10</p>
+              <p id="21" class="cb_n active">50</p>
+              <p id="22" class="cb_n">100</p>
+              <p id="23" class="cb_n">500</p>
+              <p id="24" class="cb_n">1000</p>
+              <p id="25" class="cb_n">5000</p>
+              <p id="26" class="cb_n">10000</p>
+            </div>
+          </div>
+        </div>
+
+        <canvas id="myChart" style="width: 100%; max-width: 900px"></canvas>
+      </div>
+
+      <div id="right">
+        <div class="año-input">
+          <div class="label-div">
+            <label for="fname">Años de vida </label>
+            <input value="20" type="text" id="anos_vida" name="fname" />
+          </div>
+          <div class="label-div">
+            <label for="fname">Consultas diarias por usuario </label>
+            <input
+              type="text"
+              id="Consultas_diarias_por_usuario"
+              name="fname"
+              value="21"
+            />
+          </div>
+
+          <div style="margin-top: 10px"></div>
+          <div style="margin-top: 10px"></div>
+
+          <div class="label-div">
+            <label for="fname">Nº seeders anuales </label>
+            <input type="text" id="N_seeders_anuales" name="fname" value="22" />
+          </div>
+
+          <div class="label-div">
+            <label for="fname">Nº developers anuales </label>
+            <input
+              type="text"
+              id="N_developers_anuales"
+              name="fname"
+              value="23"
+            />
+          </div>
+
+          <div class="label-div">
+            <label for="fname">Nº buyers anuales</label>
+            <input type="text" id="N_buyers_anuales" name="fname" value="100" />
+          </div>
+        </div>
+
+        <div class="data">
+          <div class="data-div">
+            <label for="fname">Nuevos usuarios por año</label>
+            <label class="money" id="Nuevos_usuarios_por_ano" for="fname2"
+              >200€</label
+            >
+          </div>
+          <div class="data-div">
+            <label for="fname">Nº anual de ideas nuevas</label>
+            <label class="money" id="N_anual_ideas_nuevas" for="fname2"
+              >200€</label
+            >
+          </div>
+
+          <div style="margin-top: 10px"></div>
+          <div style="margin-top: 10px"></div>
+
+          <div class="data-div">
+            <label for="fname">Registros de consultas por vida</label>
+            <label class="money" id="Registros_consultas_vida" for="fname2"
+              >200€</label
+            >
+          </div>
+          <div class="data-div">
+            <label for="fname">Consultas anuales por usuario</label>
+            <label class="money" id="Consultas_anuales_usuario" for="fname2"
+              >200€</label
+            >
+          </div>
+
+          <div class="data-div">
+            <label for="fname"
+              >Coste de registrar las consultas por idea
+            </label>
+            <label
+              class="money"
+              id="Coste_registrar_consultas_idea"
+              for="fname2"
+              >200€</label
+            >
+          </div>
+          <div class="data-div">
+            <label for="fname">Consultas recibidas por año por idea</label>
+            <label
+              class="money"
+              id="Consultas_recibidas_ano_idea"
+              for="fname2"
+            ></label>
+          </div>
+
+          <div class="data-div">
+            <label for="fname">Ingresos por idea derivados de consultas</label>
+            <label
+              class="money"
+              id="Ingresos_idea_derivado_consultas"
+              for="fname2"
+              >200€</label
+            >
+          </div>
+          <div class="data-div">
+            <label for="fname">Cuota mínima Seeder</label>
+            <label class="money" id="Cuota_minima_seeder" for="fname2"
+              >200€</label
+            >
+          </div>
+        </div>
+        <div class="button-div">
+          <a id="go" href="#">Update</a>
+        </div>
       </div>
     </div>
   </body>

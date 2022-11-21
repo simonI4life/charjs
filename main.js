@@ -1,53 +1,43 @@
-function generateChart(data) {
-  new Chart("myChart", {
-    type: "scatter",
-    data: {
-      datasets: [
-        {
-          pointRadius: 4,
-          pointBackgroundColor: "rgb(0,0,255)",
-          data: data,
-        },
-      ],
-    },
-    options: {
-      legend: { display: false },
-      scales: {
-        // xAxes: [{ ticks: { min: 40, max: 160 } }],
-        // yAxes: [{ ticks: { min: 0, max: 20 } }],
-      },
-    },
-  });
+function showCheckboxes(checkboxes) {
+  var checkboxes = document.getElementById(checkboxes);
+  if (checkboxes.classList.contains("hide")) {
+    checkboxes.classList.remove("hide");
+  } else {
+    checkboxes.classList.add("hide");
+  }
 }
 
-var xyValues = [
-  { x: 50, y: 12 },
-  { x: 60, y: 8 },
-  { x: 70, y: 8 },
-  { x: 80, y: 9 },
-  { x: 90, y: 9 },
-  { x: 100, y: 9 },
-  { x: 110, y: 10 },
-  { x: 120, y: 11 },
-  { x: 130, y: 14 },
-  { x: 140, y: 14 },
-  { x: 150, y: 15 },
-];
+document.getElementById("body").addEventListener("click", (ev) => {
+  remove = 0;
 
-generateChart(xyValues);
+  ev.path.forEach((el) => {
+    if (el.id === "option1") remove = 1;
+    if (el.id === "option2") remove = 1;
+    if (el.id === "option3") remove = 1;
+  });
 
-document.getElementById("go").addEventListener("click", () => {
-  const valor = parseInt(document.getElementById("valor").value);
-  const valor1 = parseInt(document.getElementById("valor1").value);
-  const valor2 = parseInt(document.getElementById("valor2").value);
+  if (remove === 0) {
+    var checkboxes = [
+      document.getElementById("checkboxes0"),
+      document.getElementById("checkboxes1"),
+      document.getElementById("checkboxes2"),
+    ];
 
-  console.log({ valor }, { valor1 }, { valor2 });
+    checkboxes.forEach((el) => {
+      if (!el.classList.contains("hide")) {
+        el.classList.add("hide");
+      }
+    });
+  }
+});
 
-  const values = [
-    { x: 50, y: valor },
-    { x: 60, y: valor1 },
-    { x: 70, y: valor2 },
-  ];
-
-  generateChart(values);
+document.querySelectorAll(".cb_n").forEach((el) => {
+  el.addEventListener("click", (ev) => {
+    console.log(ev);
+    if (el.classList.contains("active")) {
+      el.classList.remove("active");
+    } else {
+      el.classList.add("active");
+    }
+  });
 });
